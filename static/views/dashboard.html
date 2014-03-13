@@ -1,0 +1,187 @@
+<div ng-init="fetchData()" ng-show="data">   
+        <form class="date-picker">
+            <label for="startDate">Start Date:</label>
+            <input type="date" name="startDate" ng-model="dates.start">
+            <label for="endDate">End Date:</label>
+            <input type="date" name="endDate "ng-model="dates.end">
+            Filter by business hours: <input type="checkbox" ng-model="filters.businessHours">
+        </form>
+
+        <div class="range-info">
+            <div class="email-breakdown">
+                <h2>Email Breakdown ({{ data.totalMessages }} Total)</h2>
+                <ul>
+                    <li>Our Responses: {{ data.numEmails.ourResponses }}</li>
+                    <li>Their Responses: {{ data.numEmails.theirResponses }}</li>
+                    <li>Internal: {{ data.numEmails.internal }}</li>
+                    <li>Other: {{ data.numEmails.other }}</li>
+                </ul>
+            </div>
+
+            <div class="top-subjects">
+                <h2>Top 5 Subject Lines</h2>
+                <ul>
+                    <li ng-repeat="subject in data.subjects | limitTo:5 ">
+                        {{ subject[0] }}: {{ subject[1] }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>Percent Emails from Drip Campaign: {{ data.drips.toFixed(2) }}%</h3>
+
+        <table>
+            <tr>
+                <th>Time Span:</th>
+                <th>0-5 Mins</th>
+                <th>5-15 Mins</th>
+                <th>15-60 Mins</th>
+                <th>1-4 Hrs</th>
+                <th>4-8 Hrs</th>
+                <th>8-12 Hrs </th>
+                <th>12-24 Hrs</th>
+                <th>>24 Hrs</th>
+            </tr>
+            <tr>
+                <th>Their Response Rate: <br> {{ data.numAddresses.theirResponses }} total)</th>
+                <td><a ng-click="listFocus(data.responseTimes.zeroToFive.theirResponses)">{{ data.responseTimes.zeroToFive.theirResponses.length }} <br> {{ (data.responseTimes.zeroToFive.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+                <td><a ng-click="listFocus(data.responseTimes.fiveToFifteen.theirResponses)">{{ data.responseTimes.fiveToFifteen.theirResponses.length }} <br> {{ (data.responseTimes.fiveToFifteen.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+                <td><a ng-click="listFocus(data.responseTimes.fifteenToOneHr.theirResponses)">{{ data.responseTimes.fifteenToOneHr.theirResponses.length }} <br> {{ (data.responseTimes.fifteenToOneHr.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+                <td><a ng-click="listFocus(data.responseTimes.oneToFourHrs.theirResponses)">{{ data.responseTimes.oneToFourHrs.theirResponses.length }} <br> {{ (data.responseTimes.oneToFourHrs.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+                <td><a ng-click="listFocus(data.responseTimes.fourToEightHrs.theirResponses)">{{ data.responseTimes.fourToEightHrs.theirResponses.length }} <br> {{ (data.responseTimes.fourToEightHrs.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+                <td><a ng-click="listFocus(data.responseTimes.eightToTwelveHrs.theirResponses)">{{ data.responseTimes.eightToTwelveHrs.theirResponses.length }} <br> {{ (data.responseTimes.eightToTwelveHrs.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+                <td><a ng-click="listFocus(data.responseTimes.twelveHrsToOneDay.theirResponses)">{{ data.responseTimes.twelveHrsToOneDay.theirResponses.length }} <br> {{ (data.responseTimes.twelveHrsToOneDay.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+                <td><a ng-click="listFocus(data.responseTimes.moreThanOneDay.theirResponses)">{{ data.responseTimes.moreThanOneDay.theirResponses.length }} <br> {{ (data.responseTimes.moreThanOneDay.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%</td>
+            </tr>
+            <tr>
+                <th>Our Response Rate: <br> ({{ data.numAddresses.ourResponses }} total)</th>
+                <td><a ng-click="listFocus(data.responseTimes.zeroToFive.ourResponses)">{{ data.responseTimes.zeroToFive.ourResponses.length }} <br> {{ (data.responseTimes.zeroToFive.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+                <td><a ng-click="listFocus(data.responseTimes.fiveToFifteen.ourResponses)">{{ data.responseTimes.fiveToFifteen.ourResponses.length }} <br> {{ (data.responseTimes.fiveToFifteen.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+                <td><a ng-click="listFocus(data.responseTimes.fifteenToOneHr.ourResponses)">{{ data.responseTimes.fifteenToOneHr.ourResponses.length }} <br> {{ (data.responseTimes.fifteenToOneHr.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+                <td><a ng-click="listFocus(data.responseTimes.oneToFourHrs.ourResponses)">{{ data.responseTimes.oneToFourHrs.ourResponses.length }} <br> {{ (data.responseTimes.oneToFourHrs.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+                <td><a ng-click="listFocus(data.responseTimes.fourToEightHrs.ourResponses)">{{ data.responseTimes.fourToEightHrs.ourResponses.length }} <br> {{ (data.responseTimes.fourToEightHrs.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+                <td><a ng-click="listFocus(data.responseTimes.eightToTwelveHrs.ourResponses)">{{ data.responseTimes.eightToTwelveHrs.ourResponses.length }} <br> {{ (data.responseTimes.eightToTwelveHrs.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+                <td><a ng-click="listFocus(data.responseTimes.twelveHrsToOneDay.ourResponses)">{{ data.responseTimes.twelveHrsToOneDay.ourResponses.length }} <br> {{ (data.responseTimes.twelveHrsToOneDay.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+                <td><a ng-click="listFocus(data.responseTimes.moreThanOneDay.ourResponses)">{{ data.responseTimes.moreThanOneDay.ourResponses.length }} <br> {{ (data.responseTimes.moreThanOneDay.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%</a></td>
+            </tr>
+            <tr>
+                <th>% Flagged in Bucket:</th>
+                <td>{{ (data.responseTimes.zeroToFive.flagged.length / data.responseTimes.zeroToFive.ourResponses.length * 100).toFixed(2) }}%</td>
+                <td>{{ (data.responseTimes.fiveToFifteen.flagged.length / data.responseTimes.fiveToFifteen.ourResponses.length * 100).toFixed(2) }}%</td>
+                <td>{{ (data.responseTimes.fifteenToOneHr.flagged.length / data.responseTimes.fifteenToOneHr.ourResponses.length * 100).toFixed(2) }}%</td>
+                <td>{{ (data.responseTimes.oneToFourHrs.flagged.length / data.responseTimes.oneToFourHrs.ourResponses.length * 100).toFixed(2) }}%</td>
+                <td>{{ (data.responseTimes.fourToEightHrs.flagged.length / data.responseTimes.fourToEightHrs.ourResponses.length * 100).toFixed(2) }}%</td>
+                <td>{{ (data.responseTimes.eightToTwelveHrs.flagged.length / data.responseTimes.eightToTwelveHrs.ourResponses.length * 100).toFixed(2) }}%</td>
+                <td>{{ (data.responseTimes.twelveHrsToOneDay.flagged.length / data.responseTimes.twelveHrsToOneDay.ourResponses.length * 100).toFixed(2) }}%</td>
+                <td>{{ (data.responseTimes.moreThanOneDay.flagged.length / data.responseTimes.moreThanOneDay.ourResponses.length * 100).toFixed(2) }}%</td>
+            </tr>
+            <tr class="graph-row">
+                <td></td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.zeroToFive.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.zeroToFive.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.fiveToFifteen.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.fiveToFifteen.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.fifteenToOneHr.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.fifteenToOneHr.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.oneToFourHrs.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.oneToFourHrs.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.fourToEightHrs.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.fourToEightHrs.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.eightToTwelveHrs.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.eightToTwelveHrs.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.twelveHrsToOneDay.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.twelveHrsToOneDay.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+                <td class="graph-group">
+                    <div class="their-response" style="height:{{ (data.responseTimes.moreThanOneDay.theirResponses.length / data.numAddresses.theirResponses * 100).toFixed(2) }}%;"></div>
+                    <div class="our-response" style="height:{{ (data.responseTimes.moreThanOneDay.ourResponses.length / data.numAddresses.ourResponses * 100).toFixed(2) }}%;"></div>
+                </td>
+            </tr>
+        </table>
+
+        <div ng-show="focusedList">
+            <h2>People</h2>
+            <div ng-show="focusedEmail">
+                <ul>
+                    <li><h3>Focus on: {{ focusedEmail.email }}</h3></li>
+                    <li>Total Messages: {{ focusedEmail.info.totalMessages }}</li>
+                    <li><span ng-hide="focusedEmail.info.closed">Not </span>Flagged</li>
+                    <li><h4>Our Responses to Them:</h4></li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Date Sent</th>
+                        <th>Date Responded</th>
+                        <th>Response Time (Mins)</th>
+                    </tr>
+                    <tr ng-repeat="message in focusedEmail.info.ourResponses">
+                        <td>{{ message.subject }}</td>
+                        <td>{{ message.dateSent | date:'EEE MMM d, y h:mm:ss a' }}</td>
+                        <td>{{ message.dateResponded | date:'EEE MMM d, y h:mm:ss a' }}</td>
+                        <td>{{ message.responseTime.toFixed(2) }}</td>
+                    </tr>
+                </table>
+                <ul><li><h4>Their Responses to Us:</h4></li></ul>
+                <table>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Date Sent</th>
+                        <th>Date Responded</th>
+                        <th>Response Time (Mins)</th>
+                    </tr>
+                    <tr ng-repeat="message in focusedEmail.info.theirResponses">
+                        <td>{{ message.subject }}</td>
+                        <td>{{ message.dateSent | date:'EEE MMM d, y h:mm:ss a' }}</td>
+                        <td>{{ message.dateResponded | date:'EEE MMM d, y h:mm:ss a' }}</td>
+                        <td>{{ message.responseTime.toFixed(2) }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <ul id="triple">
+                <li ng-repeat ="address in focusedList">
+                    <a class="flagged={{address.flagged}}" ng-click="focusEmail(address.email)">{{ address.email }}</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- <ul>
+            <li ng-repeat="(email, info) in data.emails | filter:search" class="closed-{{ info.closed }}"><a ng-click="focusEmail(email)">{{ email }}</a></li>
+        </ul>
+ -->
+        <!-- <table>
+            <tr>
+                <th>Subject</th>
+                <th>Sender</th>
+                <th>Date Sent</th>
+                <th>Responder</th>
+                <th>Date Responded</th>
+                <th>Response Time (Mins)</th>
+                <th>Classification</th>
+            </tr>
+            <tr ng-repeat="message in messages">
+                <td>{{ message.subject }}</td>
+                <td>{{ message.sender }}</td>
+                <td>{{ message.dateSent }}</td>
+                <td>{{ message.responder }}</td>
+                <td>{{ message.dateResponded }}</td>
+                <td>{{ message.responseTime.toFixed(2) }}</td>
+                <td>{{ message.emailClass }}</td>
+            </tr>
+        </table> -->
+    </div>
+</div>

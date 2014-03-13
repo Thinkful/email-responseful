@@ -1,0 +1,12 @@
+<div>
+    <h2>Upload The data from the worksheet {{ spreadsheet }}/{{ worksheet }}</h2>
+    <form>
+        <button type="submit" ng-click="submitData()">Log the data</button>
+    </form>
+
+    <h3 ng-show="uploadMessage">
+        Uploading the data
+        <div><img src="/static/assets/ajax-loader.gif"></div>
+    </h3>
+</div>
+

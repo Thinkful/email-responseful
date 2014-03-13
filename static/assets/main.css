@@ -1,0 +1,250 @@
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "source-sans-pro", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+
+button {
+    display: block;
+    margin: auto;
+    background-color: #4DBB75;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1em;
+    padding: 10px;
+    background: #222;
+    color: #fff;
+}
+
+.date-picker {
+    margin: auto;
+    width: 40em;
+}
+
+.range-info {
+    display: block;
+    margin: auto;
+    height: 200px;
+    width: 40em;
+}
+
+.email-breakdown {
+    display: inline-block;
+}
+
+.top-subjects {
+    display: inline-block;   
+}
+
+td {
+    text-align: center;
+    padding: 0.5em;
+}
+
+ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+#triple li  { width:33.333%; float:left; display:inline;}
+
+h2 {
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: 600;
+    margin: 1em, 0;
+}
+
+h3 {
+    font-weight: 100;
+    text-align: center
+}
+
+.highlight {
+    font-weight: 400;
+}
+
+img {
+    position: relative;
+    bottom: -7px;
+    display: inline-block;
+}
+
+.container {
+    margin: 10px;
+}
+
+.closed-true {
+    color: #4DBB75;
+}
+
+table {
+    margin: auto;
+    margin-bottom: 3em;
+    margin-top: 3em;
+}
+
+td {
+    padding: 1.2em;
+}
+
+a {
+    color: #3457C5;
+    transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    -o-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+}
+
+a:hover {
+    color: #4DBB75;
+    cursor: pointer;
+}
+
+.graph-row {
+    height: 200px;
+    padding: 0;
+}
+
+.graph-group {
+    padding: 0;
+    height: 200px;
+    width: 6em;
+    position: relative;
+}
+
+.their-response {
+    transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    -o-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    background-color: #3457C5;
+    display: inline-block;
+    width: 1em;
+    position: absolute;
+    bottom: 0;
+    left: 2em;
+}
+
+.their-response:hover { 
+    background-color: #3467D5;
+}
+
+.our-response {
+    transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    -o-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    background-color: #4DBB75;
+    display: inline-block;
+    width: 1em;
+    position: absolute;
+    bottom: 0;
+    right:1.9em;
+}
+
+.our-response:hover { 
+    background-color: #4DCB85;
+}
+
+.their-response-comparison {
+    transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    -o-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    background-color: #3457C5;
+    display: inline-block;
+    width: 1em;
+    position: absolute;
+    bottom: 0;
+    left: 1.7em;
+}
+
+.their-response-comparison:hover { 
+    background-color: #3467D5;
+}
+
+.buttons {
+    margin: auto;
+}
+
+button {
+    transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    -o-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    font-size: 0.9em;
+    border-radius: 4px;
+    margin: auto;
+    border: none;
+    color: #fff;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.button-true {
+    background: #4DBB75;
+}
+
+.button-true:hover {
+    background: #4DCB85;
+}
+
+.button-false {
+    background: #3457C5;
+}
+
+.button-false:hover {
+    background: #3467D5;
+}
+
+.our-response-comparison {
+    transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+    -ms-transition: 0.2s all ease-in-out;
+    -o-transition: 0.2s all ease-in-out;
+    -moz-transition: 0.2s all ease-in-out;
+    background-color: #4DBB75;
+    display: inline-block;
+    width: 1em;
+    position: absolute;
+    bottom: 0;
+    right:1em;
+}
+
+.our-response-comparison:hover { 
+    background-color: #4DCB85;
+}
+
+.ng-hide-add,
+.ng-hide-remove {
+    transition:.3s ease-in-out all;
+    -webkit-transition:.3s ease-in-out all;
+    -moz-transition:.3s ease-in-out all;
+    -o-transition:.3s ease-in-out all;
+
+    /* remember to add this */
+    display:block!important;
+
+    opacity:1;
+}
+.ng-hide {
+    opacity:0;
+    height: 0%;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
