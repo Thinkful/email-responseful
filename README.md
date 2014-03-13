@@ -53,3 +53,7 @@ At the dashboard, you can filter emails between specific dates and look at the c
 1) The email never arrived
 * Check your email address for typos in the Google script
 * Google scripts have a timeout at 6 minutes. If you try to mine too many emails at one time, it might come up with the error "exceeded maximum execution time". Try making the range between your emails smaller, and running the script multiple times to get a bigger range. Don't worry about capturing emails more than once, duplicates are removed before the data is inserted into the database.
+
+## License ##
+
+This software is distributed under the MIT License. See LICENSE.md for more information.
